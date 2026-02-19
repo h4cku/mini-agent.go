@@ -38,7 +38,6 @@ func (s *ShellTool) Definition() map[string]any {
 }
 
 func (s *ShellTool) Execute(ctx context.Context, args string) (string, error) {
-	fmt.Println(args)
 	// 1. Parse the JSON arguments provided by the LLM
 	var params struct {
 		Command string `json:"command"`
