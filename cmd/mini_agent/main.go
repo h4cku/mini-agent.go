@@ -16,8 +16,14 @@ func main() {
 	// 1. Setup Provider (llama.cpp)
 	llm := provider.NewLlamaCpp("http://localhost:8080/v1", "llama-3.2")
 
-	// 2. Setup Memory (In-memory for now, SQLite later)
+	// 2. Setup Memory
+	// In-memory
 	mem := memory.NewInMemory()
+	// SQLite
+	// mem, err := memory.NewSQLiteMemory("data.db")
+	// if err != nil {
+	// 	log.Fatalf("failed to open database: %v", err)
+	// }
 
 	// 3. Initialize Agent
 	systemPrompt := "You are an agent, a sleek autonomous AI assistant. Be concise."
@@ -25,7 +31,9 @@ func main() {
 
 	// Initialize and Register the Shell Tool
 	shell := tool.NewShellTool()
+	ft := tool.NewFileTool("./agent_workspace")
 	myAgent.RegisterTool(shell)
+	myAgent.RegisterTool(ft)
 
 	// 4. Start Terminal Channel
 	term := channel.NewTerminal()
