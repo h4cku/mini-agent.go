@@ -34,7 +34,7 @@ func (l *LlamaCppProvider) Generate(ctx context.Context, history []Message, tool
 	var formattedTools []wrappedTool
 	for _, t := range tools {
 		formattedTools = append(formattedTools, wrappedTool{
-			Type:     "function", // <--- THIS is what was missing
+			Type:     "function",
 			Function: t,
 		})
 	}

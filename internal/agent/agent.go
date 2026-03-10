@@ -46,7 +46,7 @@ func (a *Agent) Process(ctx context.Context, sessionID string, userInput string)
 	}
 
 	// 3. Enter the Generation Loop (Max 5 turns to prevent infinite loops)
-	for i := 0; i < 5; i++ {
+	for range 5 {
 		// Fetch full history (System + Chat History)
 		history, _ := a.Memory.GetRecent(ctx, sessionID, 10)
 		fullPrompt := append([]provider.Message{{Role: "system", Content: a.System}}, history...)

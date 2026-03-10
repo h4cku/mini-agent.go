@@ -22,6 +22,5 @@ type Provider interface {
 type ToolDefinition struct {
 	Name        string         `json:"name"`
 	Description string         `json:"description"`
-	Type        string         `json:"type"`
 	Parameters  map[string]any `json:"parameters"` // JSON Schema
 }
